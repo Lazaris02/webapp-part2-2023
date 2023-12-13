@@ -1,0 +1,1010 @@
+
+:root {
+    /* so that it is easier to change the main-frequently used colors*/
+    --nav-color: #bcd2e8;
+    --body-mid: #2e5984;
+    --footer-color: #5e86b7c0;
+    --header-text: #014462;
+    --link-color: rgb(0, 140, 140);
+    --no-color: rgba(255, 255, 255, 0);
+    --smoky-black: #241e1e;
+    --article-color: rgba(250, 250, 250, 0.5);
+    --hover-shadow: #014362d5;
+}
+
+
+* {
+    /* makes laying out the content easier */
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+ul {
+    /* to most our lists we don't need them to have bullets */
+    list-style: none;
+}
+
+
+body {
+    /* gives the whole body this nice gradient blueish color */
+    background-image: linear-gradient(var(--nav-color), var(--body-mid), var(--nav-color));
+}
+
+img{
+    max-width: 100%;
+}
+
+
+
+
+/* for index.html */
+.categories-container{
+    display: flex;
+    gap: 4em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category{
+    text-align: center;
+    min-width: 200px;
+}
+
+.category h2{
+    color: var(--smoky-black);
+}
+
+.category img{
+    width: 200px;
+    height: 200px;
+    border-radius: 2em;
+    display: block;
+}
+
+.category>a{
+    display: block;
+    border-radius: 2em;
+}
+
+.category>a:hover{
+    box-shadow: 5px 5px 10px var(--hover-shadow);
+    transition: all 100ms ease-in;
+}
+
+.sub-list a {
+    color: var(--smoky-black);
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.sub-list a:hover{
+    color: var(--nav-color);
+    transition: all 200ms;
+}
+
+.sub-list a:active{
+    color: var(--hover-shadow);
+}
+
+
+/* NEWLY ADDED WRAPPERS FOR EXC3++ */
+
+
+#grid_wrap {
+    /* this is the wrapper of the body sections of 
+    our html code that will be used to set the
+    general layout of our pages */
+    /*  I can set the footer margin-top:auto and 
+    with min-height 100vh on the parent of the footer I can
+    stick the footer at the bottom of the page* 
+    The margin auto makes it so that the footer constantly
+    has maximum margin space */
+    min-height: 100vh;
+    display: grid;
+    gap: 20px;
+}
+
+#main_header {
+    /* I have named this area for the grid-template-areas
+    so that the grid wrap can identify it
+    display flex+column wrap is because I want vertical
+    positioning in our header
+    (logo+nav-bar above the banner) */
+    grid-area: header;
+    display: flex;
+    flex-flow: column wrap;
+
+}
+
+#main_content {
+    /* I gave this class the grid-area main_content
+    for it to be recognized from the grid_wrap I used on all the body */
+    grid-area: content;
+}
+
+
+/* flexbox for header */
+.logo_nav_wrap {
+    /* I wrapped the logo and the nav-bar in a div
+    using this class so that they count as 1 element for the flex
+    I also set the display to inline-flex + flex-flow row wrap
+     because I want the logo to be displayed next to the navigation bar
+     and I want the logo and the nav-bar (a row)
+     I also want the items to start on the left of the page (flex-start) */
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#nav_bar {
+    /* centers the nav-bar in the middle of the page */
+    margin: auto;
+}
+
+
+#nav_bar>ul {
+    /* makes the direct nav_bar descendant a flexbox
+    and its contents (the nav_bar>ul>li ) are displayed 
+    horizontally not vertically */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+#top_footer {
+    /* makes the content wrapped around the top_footer wrapper
+    (all footer elements above the hr) be displayed in a row 
+    adding equal space between them */
+    display: flex;
+    justify-content: space-between;
+}
+
+#social_list {
+    /* makes it so that there is
+    even space between our social media icons
+    in the footer */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.middle_footer {
+    /* I wrapped the logo and the 
+    newsletter together so I can positon them
+    relative to each other  as a column with max space between them
+    vertically , position relative is so that the logo
+    with position absolute sticks to the top of this container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+
+
+#bottom_footer {
+    /* the bottom part of the footer
+    is displayed in one row(default) with the
+    copyright fully on the right
+     */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* index wrappers */
+.intro_info {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+}
+
+
+
+
+/* contactus wrappers */
+
+#total_form {
+    /* the 2 parts of the form are
+    displayed one next to the other
+    they cannot fold if the screen
+    shrinks (nowrap) and they are
+    aligned at the center both 
+    at the normal and the cross axis */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#news_section {
+    /* the news-section is displayed just like  */
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-auto-rows:minmax(100px,auto);
+    justify-items: center;
+}
+
+#news_section>* {
+    /* I give all the articles in
+    the news-section a bit of top and bottom margin */
+    margin: 1em 0 2em 0;
+}
+
+#news_section>h2 {
+    /* the h2 will take up a whole row
+    of space*/
+    grid-column: 1/-1;
+
+}
+
+
+/* categories wrappers */
+
+#categories-nav>ul {
+    /* makes the categories nav a flex-box
+    sets display wrap so that it can wrap if
+    the screen gets too small
+    and it also aligns all the items in the center both vertically
+    and horizontally */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* THE WRAPPERS FOR EXC 3 END HERE */
+
+
+
+
+/*-------------------Styling the header-------------- */
+
+
+
+
+
+#nav_bar ul {
+    /* cuts the edges of all ul's border inside nav bar and*/
+    border-radius: 5px;
+}
+
+
+#nav_bar>ul li {
+    /* all the list elements that are inside of the direct child of the nav-bar container
+    are displayed as inline blocks(inline elements thar
+     retain block's ability to space from other blocks)
+     So that the list elements are displayed one next to the other */
+    display: inline-block;
+}
+
+
+
+#nav_bar a {
+    /* for all anchors in the nav bar it revokes their design
+    applies black color and changes font-weight +font-size
+    the display:block makes it so that the element takes up all the space of its father
+    -->the link can be clicked easier
++ a bit of padding for better spacing between the links
+    */
+    display: block;
+    padding: 0.4em;
+    text-decoration: none;
+    color: var(--smoky-black);
+    font-size: x-large;
+    font-weight: 500;
+}
+
+
+#nav_bar a:hover {
+    /* hovering over an anchor tag inside of an element that has the 
+    nav bar id changes the background color to black and the text-color
+    to white. Also the black background will have cut edges and the whole hover animation
+    will last 100ms in total (both in and out) */
+    background-color: var(--footer-color);
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+    transition: all 100ms ease;
+
+}
+
+#nav_bar a:active {
+    /* when you click on an anchor tag inside an element with the nav_bar
+    class the font-weight increases making it more distinguishable*/
+    font-weight: 800;
+}
+
+
+
+
+/* drop-down menu */
+
+.sub-menu-1 {
+    /* makes the categories menu invisible 
+    sets the position to absolute so that it doesn't move 
+    other elements when it reappears
+    gives it a bit of padding and color 
+    z-index makes it place on top of the header
+    banner so that is clickable when the animation starts*/
+    display: none;
+    position: absolute;
+    padding: 5px;
+    background-color: var(--nav-color);
+    z-index: 2;
+
+}
+
+.drop-down-1:hover .sub-menu-1 {
+    /* when I hover over the categories list element which has the drop-down class
+    then the sub-menu-1 class element that is a successor of the drop-down-1 
+    element will reapear  one next to the other because display flex
+    makes the .submenu-1 list elements have an automatic flex-direction of row
+    so they will be displayed one next to the other */
+    display: flex;
+}
+
+.sub-menu-2 {
+    /* makes the sub-category menu invisible 
+    sets the position to absolute so that it doesn't move 
+    other elements when it reappears
+    gives it a bit of padding and color */
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: var(--nav-color);
+    z-index: 2;
+    }
+
+.drop-down-2:hover .sub-menu-2 {
+    /* same logic as the drop-down-1 hover but for the second menu
+    when I hover over a subcategory in the nav-bar -->its subcategories appear
+    as a block element */
+    display: flex;
+}
+
+/* for the header banner */
+
+@keyframes fadeIn {
+
+    /* Fade in effect for the text,
+    starts from opacity 0% and goes all the way up to 100% 
+    we later use the animation property and we also set how long this
+    transition should take*/
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#header_banner {
+    /* our header-color starts from white - all the
+     way to the right and ends up as the second 
+    color all the way to the left 
+    we use a banner in all our pages with different image and text.*/
+    background-image: linear-gradient(to right, white, #bcd2e800);
+    display: flex;
+    flex-direction: row-reverse;
+    /* display flex so that I can set the flex-direction to row-reverse and 
+    make the h2 and the image move to the right easily
+    instead of using text align etc */
+}
+
+
+
+#header_banner h2 {
+    /* we give the header-banner h2 a new font-family
+    size and the fade - in animation which lasts for 4s when I enter or refresh the page
+     */
+    font-family: "Agbalumo";
+    font-size: xx-large;
+    animation: fadeIn 4s;
+    text-wrap: wrap;
+}
+
+
+
+
+
+
+/* ------------------Styling the logo----------------*/
+
+.logo {
+    /* removes it from the regular flow
+    considered as background-doesn't affect main flow elements */
+    position: absolute;
+    top: 0;
+}
+
+
+.logo img {
+    /*I give the image specific width+height  */
+    height: 25px;
+    width: 25px;
+}
+
+
+.logo>h1,
+.logo>h2 {
+    /* we give the logo h1 (If it is the main logo) and the
+    logo h2 (If it is the footer header) a color and we 
+    also make it float on the left of its father container */
+    color: var(--smoky-black);
+    float: left;
+}
+
+
+/* ------------Styling for footer ----------------*/
+
+
+#main_footer {
+    /* changes the background color of the footer + margin-top:auto 
+    maximizes the space between the above block and the footer so that the footer always
+    sticks at the bottom*/
+    background-color: var(--footer-color);
+    margin-top: auto;
+    grid-area: footer;
+}
+
+
+
+#main_footer a {
+    /* changes the decoration of the links in the footer */
+    text-decoration: none;
+    color: var(--smoky-black);
+}
+
+#main_footer address a:hover {
+    /* when you hover over the anchor tags of the address 
+    element in the footer it changes color and
+    it does so smoothly with the transition propery */
+    color: var(--article-color);
+    transition: all 150ms ease-in;
+}
+
+
+#news_letter form {
+    font-weight: 800;
+}
+
+#news_letter form button {
+    /* the button of the news-letter form */
+    color: var(--smoky-black);
+    font-weight: 800;
+    background-color: var(--no-color);
+    border: none;
+    text-transform: uppercase;
+}
+
+#news_letter form button:hover {
+    /* when you hover over the submit button it gets highlighted
+    and all the highlight animation lasts for 150ms */
+    background-color: var(--footer-color);
+    transition: 150ms ease;
+}
+
+#news_letter form button:active {
+    color: var(--article-color);
+}
+
+#news_letter form input {
+    /* the design for the input of the footer news-letter
+    affects the font-weight the color , the border etc.. */
+    background-color: var(--footer-color);
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    color: var(--smoky-black);
+}
+
+#news_letter form input:hover {
+    /* hover animation of the form */
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 150ms ease;
+}
+
+
+#news_letter form input::placeholder {
+    /* the styling of the news-letter placeholder 
+    we make it less visible and change the color of the letters and the background */
+    background-color: rgba(255, 255, 255, 0.418);
+    color: var(--smoky-black);
+    opacity: 50%;
+}
+
+
+
+.footer_img {
+    /* all the images in the footer are given this class
+    --> specific size */
+    height: 50px;
+    width: 50px;
+}
+
+#main_footer>p {
+    /* makes the copyright claim at the
+    bottom of the footer stand out */
+    font-weight: 600;
+    color: var(--header-text);
+}
+
+.contact_details {
+    /* adds a bit of left margin on the contact-details
+    of the footer */
+    margin-left: 0.4em;
+}
+
+
+.important_text {
+    /* used to highlight text */
+    color: var(--header-text);
+    font-weight: 600;
+}
+
+/* ----Styling for index.html ends here */
+
+
+
+@media (max-width: 650px){
+    /* media queries for phone view 
+    Any container I used grid on
+    I want it to be displayed as 1 column*/
+
+    #grid_wrap{
+        /* this is the grid for the phone-view
+        it is a one column grid that*/
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "content"
+        "footer";
+    }
+
+    .index_nav_2>ul{
+        /* the secondary nav takes up 1 column */
+        grid-template-columns: 1fr;
+    }
+
+    #news_section{
+        /* the news-section takes up one column */
+        grid-template-columns: 1fr;
+    }
+
+    .logo h1, .logo h2{
+        /* we don't want the logo text to be displayed in phones */
+        display: none;
+    }
+
+    #nav_bar a{
+        /* slight change to font-size in the size of the
+        nav-bar */
+        font-size: medium;
+        font-weight: 600;
+    }
+
+
+    #header_banner h2{
+        /* we also decrease the font-size of 
+        the banner slogan */
+        font-size: x-large;
+    }
+
+    #main_footer h2{
+        /* we also change the sizes of the h2 footer elements */
+        font-size: larger;
+        text-align: center;
+    }
+
+
+    #top_footer {
+        /* changes the layout of the footer
+        to a single column */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #top_footer li{
+        /* centers all the list elements in their container */
+        text-align: center;
+    }
+
+    #top_footer>*{
+        /* gives all the elements inside the top-footer
+        container a bit of top-margin */
+        margin-top: 0.5em;
+    }
+    .middle_footer{
+        /* a bit of adjusting the logo+newsletter */
+        align-items: start;
+        margin-left: 0.4em;
+    }
+
+    #news_letter>form{
+        /* the news-letter inside form elements need to be 
+        on a column direction so that it looks ok */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #bottom_footer{
+        /* moves the copyright in the center horizontally */
+        justify-content: center;
+    }    
+
+    .ad img{
+        /* setting the width of the image to be 100% in order
+        to fill the whole area of the box */
+        width: 100%;
+    }
+
+    .ad{
+        /* adjusting the dimensions of the ad block and setting the fonts to be small */
+        max-height: 400px;
+        max-width: 500px;
+        justify-content: space-evenly;
+        font-size: small;
+    }
+
+    .ad_info{
+        /* adjusting the grid area of the ad_info and setting it to be with 1 column 
+        and 3 rows */
+        flex-grow: 1; /* to make the ad_info area fill the full width of the container */
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .ad_info h2{
+        /* positioning the h2 of the ad_info in the grid area */
+        grid-column: 1/-1;
+        grid-row: 1/2;
+        justify-self: center;
+    }
+
+    .ad_info h3{
+        /* positioning the h3 of the ad_info in the grid area */
+        grid-template-columns: 1/-1;
+        grid-row: 2/3;
+        justify-self: center;
+    }
+
+    #price{
+        /* positioning the price of the ad_info in the grid area */
+        grid-column: 1/-1;
+        grid-row: 3/4;
+        justify-self: center;
+    }
+
+    .ad ul, .ad footer, .ad p, #price img{
+        /* making some elements of the ads disappear */
+        display: none;
+    }
+
+    .team_img_arc{
+        /* making the image and the team article display in 1 column in order to be the one below the other 
+        and giving some space to the bottom */
+        grid-template-columns: 1fr;
+        margin-bottom: 40px;
+        max-width: 100vw;
+    }
+
+    .properties{
+        /* makes the list of the properties to appear in 2 columns instead of 3 */
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+    }
+
+    .AH-001{
+        /* making the title, the area, the code the price and the list of the basic infos 
+        of the AH-001 ad displaying in the center */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .AH-001_images{
+        /* making the images of the ad displaying in a grid of 2 columns and 5 rows */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(5,1fr);
+    }
+
+    #find_arc{
+        /* keeps the text of find_arc article within boundaries */
+        max-width: 100vw;
+        text-align: center;
+    }
+
+    .team_description{
+        /* keeps the description inside the boundaries */
+        max-width: 95vw;
+        margin-left: 15px;
+    }
+
+   #team_member1,#team_member2{
+    /*  changes the grid-display of the team-description articles into 1 column
+    for it to stay within bounds */
+        grid-template-columns: 1fr;
+        text-align: center;
+   }
+    
+    #signup_grid{
+        /* displaying the first wrapped section of the form(personal info, address, date of birth,
+        phone numbers, account info) in a grid with 1 column*/
+        grid-template-columns: 1fr !important;
+    }
+
+    #questions_wrap{
+        /* displaying the second wrapped section of the form( the short q&a) 
+        in a grid with 1 column*/
+        grid-template-columns: 1fr !important;
+    }
+
+    #signup_form, #signup_title{
+        text-align: center;
+    }
+
+    #signup_form input, #signup_form textarea, #signup_form select{
+        align-self: center;
+    }
+
+
+}
+
+
+@media (min-width: 650px) and (max-width: 1300px){
+    /* media queries for phone view 
+    Any container I used grid on
+    I want it to be displayed as 1 column*/
+
+    #grid_wrap{
+        /* fill in the grid properties 
+        for the main grid*/
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: 
+        "header header"
+        "content content"
+        "footer footer";
+    }
+
+    .index_nav_2>ul{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    #news_section{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .logo h1{
+        font-size: x-large;
+    }
+
+    .logo h2{
+        display: none;
+    }
+
+
+    #main_footer h2{
+        font-size: larger;
+        text-align: center;
+    }
+
+
+    #top_footer {
+        align-items: center;
+    }
+
+    #top_footer li{
+        text-align: center;
+    }
+
+    #top_footer>*{
+        margin-top: 0.5em;
+    }
+    .middle_footer{
+        align-items: start;
+        margin-left: 0.4em;
+    }
+
+    #news_letter>form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #team_arc{
+        /* setting the font size of the team-arc article to be a little smaller */
+        font-size: 100%;
+    }
+
+    #find_arc{
+        /* setting the font size of the find_arc article to be a little smaller */
+        font-size: 100%;
+    }
+
+    #team_member1, #team_member2{
+        /* setting the font size of the team members descriptions to fit in the block area */
+        font-size: 100%;
+        min-height: 100px;
+    }
+
+    .AH-001_images{
+        /* making the images of the ad display in a grid of 3 columns and 4 rows */
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(4,1fr);
+    }
+
+    #signup_grid{
+        /* displaying the first wrapped section of the form(personal info, address, date of birth,
+        phone numbers, account info) in a grid with 2 columns*/
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    #questions_wrap{
+        /* displaying the second wrapped section of the form( the short q&a) 
+        in a grid with 2 columns*/
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+}
+
+
+@media (min-width:1300px){
+    #grid_wrap{
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+        "header     header    header"
+        "content    content    content"
+        "footer     footer     footer";
+    }
+}
+
+
+
+/* media queries end here */
+
+
+
+#bottom_footer>a{
+    color: var(--smoky-black);
+    font-size: large;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 1em;
+    margin-right: auto;
+}
+
+
+#bottom_footer>a:hover{
+    color: var(--nav-color);
+}
+
+/* ------------------------------- Styling for sign up ------------------------------------------------------------ */
+
+#signup_form{
+    /* Gives all the form's text a font-weight of 600, changes the backround color 
+    and aligning the text to the center*/
+     background-color: #86bef581;
+     border-radius: 10px;
+     font-weight: 600;
+}
+
+#signup_form fieldset {
+    /*removes the border around the fieldsets */
+    border: none;
+}
+
+#signup_form legend {
+    /* the legend caption is styled(font-weight,size,text color)
+    and also gets the text transformed into uppercase */
+    font-weight: 800;
+    font-size: larger;
+    color: var(--smoky-black);
+    text-transform: uppercase;
+}
+
+#signup_form input,
+#signup_form textarea,
+#signup_form button,
+#signup_form select,
+#signup_form option {
+    /* adds some common properties that these form-elements all share
+    which are the color the padding-left(visual improvement), the font-weight */
+    background-color: rgba(255, 255, 255, 0.397);
+    border-radius: 5px;
+    font-weight: 800;
+    padding-left: 5px;
+    color: var(--smoky-black);
+    max-width: 200px;
+}
+
+
+#signup_form ::placeholder {
+    /* styles the placeholder of all the elements in the form
+    (decreased opacity , color , font weight */
+    color: var(--smoky-black);
+    opacity: 50%;
+    font-weight: 600;
+}
+
+#signup_form input:hover,
+#signup_form button:hover,
+#signup_form textarea:hover {
+    /* when you hover over the input and the buttons 
+    in the form the background changed color and 
+    has a smooth transition of 200ms */
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: 200ms ease-in;
+}
+
+
+
+#signup_form button {
+    /* makes the button text uppercase 
+    removes the padding it inherits from the above classes
+    for visual reasons, also gives it a width in pixels */
+    text-transform: uppercase;
+    padding: 0;
+    width: 80px;
+}
+
+#signup_form button:active {
+    /* when you click on the help_form buttons
+    their color changes smoothly */
+    color: var(--link-color);
+    transition: 100ms;
+}
+
+/* --------------------------------------- Positioning for sign up -------------------------------------------------- */
+
+#personal_info, 
+#address_info, 
+#account_info, 
+#birth_info, 
+#phone_info{
+    /* making the elements of the personal info, the address, the date of birth, the phone number,
+    the account info displaying as a column flex in order for each label to be displayed the one below the other  */
+    display: flex;
+    flex-direction: column;
+}
+
+#signup_grid{
+    /* displaying the first wrapped section of the form(personal info, address, date of birth,
+    phone numbers, account info) in a grid with 3 columns and 2 rows */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.question{
+    /* making the question be just above the text area */
+    display: flex;
+    flex-direction: column;
+}
+
+#questions_wrap{
+    /* displaying the second wrapped section of the form( the short q&a) 
+    in a grid with 3 columns and 2 rows*/
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    row-gap: 20px;
+}
+
+#signup_lastpart{
+    /* gives some space to the last part of the form*/
+    margin-top: 30px;
+}

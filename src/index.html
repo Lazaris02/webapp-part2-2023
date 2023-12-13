@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Find</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Index Page">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Thodoris, Antzi">
+
+    <link rel="icon" type="image/x-icon" href="../resources/logo-no-background.png">
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    
+
+    <script id="categories-container-template" type="text/x-handlebars-template">
+        {{#each mainCategory}}
+        <li class="category">
+            <h2>{{title}}</h2>
+            <a href="category.html?category_id={{id}}"><img src="https://wiki-ads.onrender.com/{{img_url}}" alt="{{img_url}}"></a>
+            <ul class="sub-list">
+                {{#each sub}}
+                <li>  
+                    <a href="subcategory.html?category_id={{id}}">{{this.title}}</a> 
+                </li>
+                {{/each}}
+                
+            </ul>
+        </li>
+        {{/each}}
+    </script>
+   
+    <script type="text/javascript" src="index.js" defer></script>
+
+</head>
+
+<body>
+    <div id="grid_wrap">
+        <header id="main_header">
+            <div class="logo_nav_wrap">
+                <div class="logo">
+                    <h1>Find</h1>
+                    <img src="../resources/logo-no-background.png" alt="logo">
+                </div>
+                <nav id="nav_bar">
+                    <!-- Contains links to our other webpages -->
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+
+                        <li class="drop-down-1"><a href="category.html?category_id=1">Categories</a>
+                            <ul class="sub-menu-1">
+                                <li class="drop-down-2"><a href="house_sales.html">House Sales</a>
+                                    <ul class="sub-menu-2">
+                                        <li><a href="house_sales_details.html" target="_blank">House Sale AH-001</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="car_sales.html">Car Sales</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="header_banner">
+                <h2>Welcome to Find!</h2>
+                <img srcset="../resources/head/index_head.png 650w" sizes="(max-width:650px) 25vw,
+                        (max-width:1300px) 20vw,250px" src="../resources/head/index_head.png"
+                    alt="about_us_background">
+            </div>
+        </header>
+
+
+                    <!-- for handlebars  -->
+        <main id="main_content"><ul class="categories-container"> </ul> </main>
+        
+
+
+        <footer id="main_footer">
+            <div id="top_footer">
+                <div class="contact_details">
+                    <!-- Section for Contact Details -->
+                    <h2>Contact Details</h2>
+                    <address>
+                        <ul>
+                            <li><a href="contactus.html">Technical Support</a></li>
+                            <li><a href="mailto:lazaristheo@gmail.com">lazaristheo@gmail.com</a></li>
+                            <li><a href="tel:6987470962">telephone:6987470962</a> </li>
+                        </ul>
+                    </address>
+                </div>
+                <div class="middle_footer">
+                    <div class="logo">
+                        <!-- Logo+SiteName Section -->
+                        <h2>Find</h2>
+                        <img class="footer_img" src="../resources/logo-no-background.png" alt="our Logo">
+                    </div>
+
+                    <div id="news_letter">
+                        <form action="#" method="post">
+                            <label for="news-letter">Our Newsletter:</label>
+                            <input type="email" id="news-letter" name="news-letter" placeholder="Enter your Email"
+                                required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h2>Find us on Social Media</h2>
+                    <div id="social_list">
+                        <a href="https://www.facebook.com/"><img class="footer_img" src="../resources/fb_logo.png"
+                                alt="fb_logo"></a>
+                        <a href="https://www.instagram.com/"><img class="footer_img" src="../resources/insta_logo.png"
+                                alt="insta_logo"></a>
+                        <a href="https://github.com/antzigk"><img class="footer_img" src="../resources/git_logo.png"
+                                alt="git_logo"></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="bottom_footer">
+                <a href="signup.html">Sign Up</a>
+                <p>&copy;FIND.GR ALL RIGHTS RESERVED</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
