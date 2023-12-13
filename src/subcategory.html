@@ -20,6 +20,32 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <script id="full-ad-template" type="text/x-handlebars-template">
+        <ul>
+            {{#each fullAds}}
+            <li class="full-ad-item">
+                <h2>{{title}}</h2>
+                <p>{{description}}</p>
+                <div>
+                    {{#each images}}
+                    <img src="https://wiki-ads.onrender.com/{{this}}" alt="">
+                    {{/each}}
+                </div>
+                <span>{{cost}}</span>
+                <table>
+                    <th>Features</th>
+                    {{#each split}}
+                    <tr class="t-rows">
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+                
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <!-- <script id="table-container-template" type="text/x-handlebars-template"> -->
 
     </script>
    
@@ -64,7 +90,10 @@
 
 
                     <!-- for handlebars  -->
-        <main id="main_content"><ul class="full-ad-container"></ul></main>
+        <main id="main_content">
+            <ul class="full-ad-container"></ul>
+            <table class="table-container"></table>
+        </main>
         
 
 

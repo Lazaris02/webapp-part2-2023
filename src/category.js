@@ -26,7 +26,6 @@ function createCategoryTemplate(){
     let templateObj = compiledCategoryTemplate({
         'ads' : templateData
     })
-    console.log(templateObj)
     let adsList = document.querySelector('.ads-container')
     adsList.innerHTML = templateObj
 }
