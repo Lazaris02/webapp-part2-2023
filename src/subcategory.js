@@ -12,17 +12,15 @@ function createTableData(){
   //made from the features of each ad
   for(let ad of fullAds){
 
-     fullAds['ftr']= ad['features'].split(';')
+     ad['ftr'] = ad['features'].split(';')
   }
-  console.log(fullAds)
-
 }
 
 
 function createSubCategoryTemplate(){
     let fullAdsTemplateScript = document.querySelector('#full-ad-template').textContent
     let compiledAdsTemplate = Handlebars.compile(fullAdsTemplateScript)
-    
+    console.log(fullAds)
     let templateObj = compiledAdsTemplate({
         'fullAds' : fullAds
     })
