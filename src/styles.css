@@ -90,6 +90,14 @@ img{
     color: var(--hover-shadow);
 }
 
+#login-form{
+    position: absolute;
+    right: 0;
+    margin: 5px 5px;
+}
+
+/* for project-2 end here */
+
 
 /* NEWLY ADDED WRAPPERS FOR EXC3++ */
 
@@ -136,7 +144,8 @@ img{
      and I want the logo and the nav-bar (a row)
      I also want the items to start on the left of the page (flex-start) */
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 #nav_bar {
