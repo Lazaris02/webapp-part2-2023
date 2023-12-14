@@ -33,13 +33,10 @@
                 <span>{{cost}}</span>
                 <table>
                     <th>Features</th>
-                    {{#each split}}
-                    <tr class="t-rows">
-                        <td>{{this}}</td>
-                    </tr>
-                    {{/each}}
-                </table>
-                
+                {{#each ftr}}
+                   <tr><td>{{ftr}}</td></tr>
+                   {{/each}}
+                </table>    
             </li>
             {{/each}}
         </ul>

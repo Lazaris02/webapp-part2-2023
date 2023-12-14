@@ -4,13 +4,15 @@ const baseUrl = 'https://wiki-ads.onrender.com/'
 let subURL
 let fullAds
 
+
 document.addEventListener('load',main())
 
 function createTableData(){
   //creates an array that contains substrings
   //made from the features of each ad
   for(let ad of fullAds){
-     fullAds['split'] = ad['features'].split(';')
+
+     fullAds['ftr']= ad['features'].split(';')
   }
   console.log(fullAds)
 
@@ -20,6 +22,7 @@ function createTableData(){
 function createSubCategoryTemplate(){
     let fullAdsTemplateScript = document.querySelector('#full-ad-template').textContent
     let compiledAdsTemplate = Handlebars.compile(fullAdsTemplateScript)
+    
     let templateObj = compiledAdsTemplate({
         'fullAds' : fullAds
     })
