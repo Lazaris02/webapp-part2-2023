@@ -1,11 +1,9 @@
 
 const baseUrl = 'https://wiki-ads.onrender.com/'
-
-let subURL
 let fullAds
 
 
-document.addEventListener('load',main())
+
 
 function createTableData(){
   //creates an array that contains substrings
@@ -34,7 +32,7 @@ function main(){
     const searchValues = window.location.search
     const params = new URLSearchParams(searchValues)
     const id = params.get('category_id')
-    subURL = `${baseUrl}ads?subcategory=${id}`
+    const subURL = `${baseUrl}ads?subcategory=${id}`
     //fetch the needed data
 
     fetch(subURL)
@@ -46,3 +44,5 @@ function main(){
     })
     .catch(err=>console.log(err))
 }
+
+window.addEventListener('load',main)

@@ -8,7 +8,7 @@ let compiledIndexTemplate
 
 
 
-document.addEventListener('load',main())
+
 
 function sortSubCategories(data){
     //after we fetch the subcategories
@@ -66,7 +66,7 @@ function main(){
     .catch(err=> console.log(err))
 }
 
-
+window.addEventListener('load',main)
 
 
 

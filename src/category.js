@@ -1,13 +1,17 @@
+import User from "./user.js"
+
 const baseUrl = 'https://wiki-ads.onrender.com/'
+const loginButton = document.querySelector('#login-button')
+const loginUsername = document.querySelector('#username')
+const loginPassword = document.querySelector('#password')
 
-
-let subURL 
 let subCategoryData
 let templateData = []
-let compiledCategoryTemplate
 
 
-document.addEventListener('load',main())
+
+
+
 
 
 function createTemplateData(){
@@ -23,6 +27,9 @@ function createTemplateData(){
 }
 
 function createCategoryTemplate(){
+        //creates the template function
+    let categoryTemplateScript = document.querySelector('#ads-container-template').textContent
+    let compiledCategoryTemplate = Handlebars.compile(categoryTemplateScript)
     let templateObj = compiledCategoryTemplate({
         'ads' : templateData
     })
@@ -31,18 +38,31 @@ function createCategoryTemplate(){
 }
 
 
+function submitLogin(){
+    //packs the username and password in an object
+    //sends the post message with fetch
+    //awaits for the response from server and either
+    //logs in or notifies the user that he can't login
+    // let username = loginUsername.value
+    // let password = loginPassword.value
+    let username = "s"
+    let password = "p"
+    console.log(username,password)
+    let user = new User(username,password)
+    console.log(user.getUsername,user.getPassword)
+}
+
+
 
 
 function main(){
-    //creates the template function
-    let categoryTemplateScript = document.querySelector('#ads-container-template').textContent
-    compiledCategoryTemplate = Handlebars.compile(categoryTemplateScript)
+    loginButton.addEventListener('click',submitLogin)
 
     //extract the search params
     const searchValues = window.location.search
     const params = new URLSearchParams(searchValues)
     const id = params.get('category_id')
-    subURL = `${baseUrl}ads?subcategory=${id}`
+    const subURL = `${baseUrl}ads?subcategory=${id}`
     //use the needed ones to fetch the category data +
     // its specific sub data
     fetch(subURL)
@@ -55,3 +75,6 @@ function main(){
     })
     .catch(err=>console.log(err))
 }
+
+
+window.addEventListener('load',main)
