@@ -10,6 +10,12 @@ export default class User{
     get getUsername(){return this.username}
     get getPassword(){return this.password}
 
-    set setsessionId(value){this.sessionId=value}
+    set setsessionId(value){
+        if(this.sessionId === undefined){
+            this.sessionId=value
+        }
+    }
 
 }
+
+
