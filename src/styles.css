@@ -102,7 +102,116 @@ img{
     color:var(--error);
 }
 
-/* for project-2 end here */
+
+/* for category.html */
+
+.ads-container, .full-ad-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.ads-item, .full-ad-item{
+    /* container for the ad-items */
+    max-width: 800px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column wrap; 
+    border: 1px solid var(--smoky-black);
+    border-radius: 20px;
+    padding: 20px;
+    background-color: var(--nav-color);
+    gap: 20px;
+    margin:20px 0;
+}
+.ads-item>img{
+    border-radius: 10%;
+    width: 200px;
+    height: 200px;
+    align-self: center;
+}
+
+.ads-item>h2, .full-ad-item>h2{
+    font-size: 1rem;
+    font-weight: 600;
+    font-size: larger;
+    color: var(--hover-shadow);
+    text-align: center;
+}
+
+.ads-item>span{
+    color: var(--hover-shadow);
+    align-self: center;
+}
+
+
+.full-ad-item img{
+    align-self: center;
+    height: 300px;
+    width: 250px;
+    border-radius:20px;
+}
+
+.full-ad-item p{
+    font-weight: 500;
+    font-size: large;
+    color: var(--smoky-black);
+    max-width: fit-content;
+    align-self: center;
+    text-align: center;
+}
+
+.ad-img-container{
+    display: flex;
+    gap: 50px;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.full-ad-item>span{
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--header-text);
+}
+
+.table-container{
+   align-self: center;
+   border-radius: 20px;
+}
+
+.table-container td{
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    font-weight: 600;
+    color: var(--smoky-black);
+}
+
+.table-container tr:nth-of-type(odd){
+    background-color: var(--nav-color);
+}
+
+.table-container tr:nth-of-type(even){
+    background-color: var(--footer-color);
+}
+
+.table-container th{
+    color: var(--hover-shadow);
+    text-align: center;
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: 800;
+    font-size: larger;
+}
+
+
+/*for project-2 end here*/
+
+
+
 
 
 /* NEWLY ADDED WRAPPERS FOR EXC3++ */

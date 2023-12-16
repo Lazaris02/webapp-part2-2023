@@ -25,13 +25,13 @@
             <li class="full-ad-item">
                 <h2>{{title}}</h2>
                 <p>{{description}}</p>
-                <div>
+                <div class="ad-img-container">
                     {{#each images}}
                     <img src="https://wiki-ads.onrender.com/{{this}}" alt="">
                     {{/each}}
                 </div>
-                <span>{{cost}}</span>
-                <table>
+                <span>Τιμή:{{cost}}€</span>
+                <table class="table-container">
                     <th>Features</th>
                 {{#each ftr}}
                    <tr><td>{{this}}</td></tr>
@@ -86,7 +86,6 @@
                     <!-- for handlebars  -->
         <main id="main_content">
             <ul class="full-ad-container"></ul>
-            <table class="table-container"></table>
         </main>
         
 

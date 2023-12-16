@@ -45,6 +45,8 @@ function submitLogin(){
     //sends the post message with fetch
     //awaits for the response from server and either
     //logs in or notifies the user that he can't login
+    if(loginUsername.length == 0 || loginPassword.length <5) {return}
+
     user = new User(loginUsername.value,loginPassword.value)
     console.log("Passed info",user.getUsername,user.getPassword)
     let postHeader = new Headers()
@@ -54,7 +56,7 @@ function submitLogin(){
         headers : postHeader,
         body : JSON.stringify(user)
     }
-    //if(serverPostURL==''){return} // remove this
+  
     fetch('/users',init)
     .then(response=>{
         console.log('Received , unpacking')
