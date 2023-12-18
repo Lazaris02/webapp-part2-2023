@@ -1,15 +1,15 @@
 class User{
 //user object that is managed by the DAO-object
 
-    constructor(username,password,sessionId){
+    constructor(username,password){
         this.username = username
         this.password = password
-        this.sessionId = sessionId
+        this.sessionId = undefined
     }
 
     get getUsername(){return this.username}
     get getPassword(){return this.password}
-    get getSessionId(){return this.sessionId}
+    set setSessionId(value){ this.sessionId = value}
 
 }
 

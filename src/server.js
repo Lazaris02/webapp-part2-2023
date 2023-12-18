@@ -34,7 +34,9 @@ app.post('/users',(req,res)=>{
 
     let unidentifiedUser = req.body
     console.log('Received user',unidentifiedUser.username,unidentifiedUser.password)
-    return
+    
+
+    
     let position = userDAO.findIndex(unidentifiedUser)
     if(position===-1){
         res.status(404).send("User not found")
