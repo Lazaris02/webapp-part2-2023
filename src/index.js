@@ -55,6 +55,7 @@ function main(){
     .then(response => response.json())
     .then(data=>{
         main_category = data
+        console.log(main_category)
         initSubCategory()
         return fetch(baseUrl+'subcategories')
     })

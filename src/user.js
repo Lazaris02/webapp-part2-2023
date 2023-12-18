@@ -1,4 +1,4 @@
-export default class User{
+class User{
 //user object that is sent to and saved in the server
 
     constructor(username,password){

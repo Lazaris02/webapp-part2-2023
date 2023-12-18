@@ -1,14 +1,13 @@
-import User from './user.js'
-import express from 'express'
+const User = require('./user.js')
+const express = require('express')
 
 const app = express()
 const userArray = []
-
+const port = 5000
 //data received are in json format
+
 app.use(express.json())
-
-
-app.get('/users',(req,res)=>{console.log('ihihiihih')})
+app.get('/',(req,res)=>{console.log('ihihiihih')})
 
 app.post('/users',(req,res)=>{
     //extract the user info from the body
@@ -41,6 +40,6 @@ app.post('/users',(req,res)=>{
 })
 
 
-console.log('Listening')
 
-app.listen(6500)
+app.listen(port,()=>{console.log(`Starting ${port}`)})
+

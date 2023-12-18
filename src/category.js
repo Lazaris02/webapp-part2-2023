@@ -1,5 +1,3 @@
-import User from "./user.js"
-
 const baseUrl = 'https://wiki-ads.onrender.com/'
 const loginButton = document.querySelector('#login-button')
 const loginUsername = document.querySelector('#username')
@@ -45,8 +43,6 @@ function submitLogin(){
     //sends the post message with fetch
     //awaits for the response from server and either
     //logs in or notifies the user that he can't login
-    if(loginUsername.length == 0 || loginPassword.length <5) {return}
-
     user = new User(loginUsername.value,loginPassword.value)
     console.log("Passed info",user.getUsername,user.getPassword)
     let postHeader = new Headers()
@@ -56,10 +52,11 @@ function submitLogin(){
         headers : postHeader,
         body : JSON.stringify(user)
     }
-  
+
     fetch('/users',init)
     .then(response=>{
         console.log('Received , unpacking')
+        return
         if (response.status == 404){
             //print an error message 
             //let the user know
@@ -68,7 +65,7 @@ function submitLogin(){
             loginPassword.classList.add("login-error")
             loginPassword.value = ''
             alert("The user doesn't exist")
-
+            
             return
         }
         if(response.status == 200){
