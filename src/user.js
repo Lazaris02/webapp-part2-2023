@@ -1,21 +1,21 @@
 class User{
-//user object that is sent to and saved in the server
+//user object that is managed by the DAO-object
 
-    constructor(username,password){
+    constructor(username,password,sessionId){
         this.username = username
         this.password = password
-        this.sessionId = undefined
+        this.sessionId = sessionId
     }
 
     get getUsername(){return this.username}
     get getPassword(){return this.password}
+    get getSessionId(){return this.sessionId}
 
-    set setsessionId(value){
-        if(this.sessionId === undefined){
-            this.sessionId=value
-        }
-    }
+}
 
+
+module.exports = {
+    User : User
 }
 
 

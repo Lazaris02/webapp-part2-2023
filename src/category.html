@@ -29,7 +29,6 @@
         </li>
         {{/each}}
     </script>
-    <script type="text/javascript" src="./user.js"></script>
     <script type="text/javascript" src="category.js" defer></script>
 
 <body>
@@ -58,11 +57,13 @@
                         </li>
                     </ul>
                 </nav>
-                <form action="#" method="post" id="login-form">
+
+                <form id="login-form">
                     <input type="text" maxlength="30" id="username" placeholder="username" required>
                     <input type="text" minlength="10" maxlength="40" id="password" placeholder="password" required>
-                    <button type="submit" id="login-button">Login</button>
+                    <button type="submit">Login</button>
                 </form>
+
             </div>
             <div id="header_banner">
                 <h2>Our Categories!</h2>

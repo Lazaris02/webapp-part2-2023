@@ -1,8 +1,8 @@
 const baseUrl = 'https://wiki-ads.onrender.com/'
-const loginButton = document.querySelector('#login-button')
+const serverUrl = 'http://localhost:5000'
+const loginForm = document.querySelector('#login-form')
 const loginUsername = document.querySelector('#username')
 const loginPassword = document.querySelector('#password')
-
 let subCategoryData
 let templateData = []
 let user 
@@ -43,24 +43,29 @@ function submitLogin(){
     //sends the post message with fetch
     //awaits for the response from server and either
     //logs in or notifies the user that he can't login
-    user = new User(loginUsername.value,loginPassword.value)
-    console.log("Passed info",user.getUsername,user.getPassword)
+   
+    let unidentified_user = {
+        "username" : loginUsername.value ,
+        "password" : loginPassword.value
+    }
+
     let postHeader = new Headers()
     postHeader.append('Content-Type','application/json')
     let init ={
         method : "POST",
         headers : postHeader,
-        body : JSON.stringify(user)
+        body : JSON.stringify(unidentified_user)
     }
-
-    fetch('/users',init)
+  
+    fetch(`${serverUrl}/users`,init)
     .then(response=>{
         console.log('Received , unpacking')
-        return
+        console.log(response)
         if (response.status == 404){
             //print an error message 
             //let the user know
             console.log(response.status)
+            console.log('hi there')
             loginUsername.classList.add("login-error")
             loginPassword.classList.add("login-error")
             loginPassword.value = ''
@@ -78,6 +83,8 @@ function submitLogin(){
             loginUsername.classList.remove("login-error")
             loginPassword.classList.remove("login-error")
 
+            user = response.body // the identified user item
+
             return
         }
 
@@ -90,7 +97,10 @@ function submitLogin(){
 
 
 function main(){
-    loginButton.addEventListener('click',submitLogin)
+    loginForm.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        submitLogin()
+    })
     //extract the search params
     const searchValues = window.location.search
     const params = new URLSearchParams(searchValues)
