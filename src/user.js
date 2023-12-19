@@ -9,13 +9,15 @@ class User{
 
     get getUsername(){return this.username}
     get getPassword(){return this.password}
-    set setSessionId(value){ this.sessionId = value}
+    get getSessionId(){return this.sessionId}
+
+    setSessionId(value){ this.sessionId = value}
 
 }
 
 
 module.exports = {
-    User : User
+    "User" : User
 }
 
 

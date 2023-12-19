@@ -58,36 +58,26 @@ function submitLogin(){
     }
   
     fetch(`${serverUrl}/users`,init)
-    .then(response=>{
-        console.log('Received , unpacking')
-        console.log(response)
+    .then((response)=>{
         if (response.status == 404){
-            //print an error message 
-            //let the user know
-            console.log(response.status)
-            console.log('hi there')
+            //let the user know that they
+            //input wrong credentials
             loginUsername.classList.add("login-error")
             loginPassword.classList.add("login-error")
+            loginUsername.value = ''
             loginPassword.value = ''
             alert("The user doesn't exist")
-            
-            return
+            return undefined
         }
         if(response.status == 200){
-            //update your user instance with the
-            //session id + toggle the css in form
-            // +make the login form dissapear
-            console.log(response.status)
-            user.setSessionId(response.body.sessionId)
-
             loginUsername.classList.remove("login-error")
             loginPassword.classList.remove("login-error")
-
-            user = response.body // the identified user item
-
-            return
+           return response.json()
         }
-
+    })
+    .then(data=>{
+        user = data
+        console.log(user)
     })
     .catch(err=>console.log(err))
 

@@ -1,10 +1,11 @@
-const User = require('./user.js')
+const {User} = require('./user.js')
 const users = [] // users collection
 
 
 class userDAO{
     constructor(){
-        createDefaultUsers()        
+        createDefaultUsers()  
+        console.log(users[0].getUsername,users[0].getPassword)    
     }
 
     find(index){
@@ -15,18 +16,22 @@ class userDAO{
 
     findIndex(search){
         for(let x=0; x<users.length; x++){
-            if(users[x].getUsername() == search.getUsername() 
-            && users[x].getPassword() == search.getPassword()){
+            if(users[x].getUsername == search.username 
+            && users[x].getPassword == search.password){
                 return x
             }
         }
         return -1
     }
 
+    checkSessionId(index){
+        return users[index].getSessionId 
+    }
+
     giveSessionId(index,uniqueId){
         //saves the sessionId 
         if(index<0 || index>= users.length){return}
-        users[x].setSessionId(uniqueId)
+        users[index].setSessionId(uniqueId)
     }
 
     checkIfLoggedIn(){
@@ -46,4 +51,8 @@ function createDefaultUsers(){
     }
 }
 
+
+module.exports = {
+    "DAO" : userDAO
+}
 

@@ -1,8 +1,10 @@
-const User = require('./user.js')
+const {DAO} = require('./userDAO.js')
+const {v4: uuidv4} = require('uuid')
 const express = require('express')
 
+
 const app = express()
-const userArray = []
+const userDAO = new DAO()
 const port = 5000
 //data received are in json format
 
@@ -22,7 +24,6 @@ app.post('/users',(req,res)=>{
     //then either 200 OK == create uuid + reply
     // or 404 NotFound
     console.log('Login Request Received!')
-    res.header('Access-Control-Allow-Origin', '*')
     let contentType = req.header('Content-Type')
     console.log(contentType)
 
@@ -32,21 +33,29 @@ app.post('/users',(req,res)=>{
         return
     }
 
-    let unidentifiedUser = req.body
-    console.log('Received user',unidentifiedUser.username,unidentifiedUser.password)
+    let user = req.body
+    console.log('Received user',user.username,user.password)
     
 
     
-    let position = userDAO.findIndex(unidentifiedUser)
+    let position = userDAO.findIndex(user)
+
     if(position===-1){
-        res.status(404).send("User not found")
+        res.status(404).send("User not found!")
         return 
     }
 
-    // if found create the unique uuid 
-    // ask the dao to apply it to the found user
-    // and send the sessionId as a reply
+    //create the new sessionID and give it to the user
 
+    let newSID = uuidv4()
+    userDAO.giveSessionId(position,newSID)
+    user["sessionId"] = newSID
+    console.log(userDAO.find(0))
+
+
+    //finally send the reply 
+    res.type('application/json')
+    res.status(200).send(JSON.stringify(user))
 
 })
 
