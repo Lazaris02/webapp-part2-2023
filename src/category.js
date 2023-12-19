@@ -149,6 +149,8 @@ function LS(){
     .then(data=>{
         user = data
         console.log(user)
+        //also if the server was already open 
+        //fetches the favorites of the user ??
     })
     .catch(err=>console.log(err))
 
@@ -182,7 +184,12 @@ function AFS(currId,adClicked){
             console.log('Wrong format')
         }
 
+        return response.json()
 
+    })
+    .then(data=>{
+        currFavourites = data
+        console.log(currFavourites)
     })
     .catch(err=>{console.log(err)})
 }

@@ -57,6 +57,10 @@ class userDAO{
         //adds an ad to the favourites list
         users[userIndex].addFavourite(newFavourite)
     }
+
+    returnFavouritesList(userIndex){
+        return users[userIndex].getFavouritesList
+    }
 }
 
 

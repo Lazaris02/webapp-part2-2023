@@ -109,7 +109,10 @@ app.post('/favourites',(req,res)=>{
         console.log('Added to favourites succesfully!')
     }
     //send response
-    res.status(200).send("AFS Succesful!")
+    let favList = userDAO.returnFavouritesList(userPosition)
+    console.log(favList,"FAVOURITE LIST")
+    console.log(userDAO.find(userPosition))
+    res.status(200).send(JSON.stringify(favList))
 })
 
 
