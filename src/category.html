@@ -21,10 +21,11 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="ads-container-template" type="text/x-handlebars-template">
         {{#each ads}}
-        <li class="ads-item">
+        <li class="ads-item" id="{{id}}">
+            <img  src="../resources/heart.png" class="favourites-heart" alt="heart-img">
             <h2>{{title}}</h2>
             <p>{{description}}</p>
-            <img src="https://wiki-ads.onrender.com/{{images}}" alt="ads-img">
+            <img src="https://wiki-ads.onrender.com/{{images}}"  class='ads-image' alt="ads-img">
             <span>Τιμή:{{cost}}€</span>
         </li>
         {{/each}}

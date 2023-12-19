@@ -5,13 +5,17 @@ class User{
         this.username = username
         this.password = password
         this.sessionId = undefined
+        this.favourites = []
     }
 
     get getUsername(){return this.username}
     get getPassword(){return this.password}
     get getSessionId(){return this.sessionId}
+    get getFavouritesList(){return this.favourites}
 
     setSessionId(value){ this.sessionId = value}
+    addFavourite(value){this.favourites.push(value)}
+    removeFavourite(index){this.favourites.splice(index,1)}
 
 }
 

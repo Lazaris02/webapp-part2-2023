@@ -28,16 +28,12 @@ app.post('/users',(req,res)=>{
     console.log(contentType)
 
     if(contentType !== 'application/json'){
-        console.log('here')
-        res.status(404).send("Wrong format requested!")
+        console.log('not json format')
+        res.status(400).send("Wrong format requested!")
         return
     }
 
     let user = req.body
-    console.log('Received user',user.username,user.password)
-    
-
-    
     let position = userDAO.findIndex(user)
 
     if(position===-1){
@@ -57,6 +53,63 @@ app.post('/users',(req,res)=>{
     res.type('application/json')
     res.status(200).send(JSON.stringify(user))
 
+})
+
+
+app.post('/favourites',(req,res)=>{
+    //checks if username + password + sessionId match(if not err)
+    //check if already added in user's collection (if not add else remove it)
+    //sends message to back to client 
+    console.log('AFS request received!')
+
+    let contentType = req.header('Content-Type')
+    if(contentType !== 'application/json'){
+        console.log('not json format')
+        res.status(400).send("Wrong format requested!")
+        return
+    }
+
+    let msgBody = req.body
+
+    let userCredentials = {
+        username : msgBody['username'],
+        password : msgBody['password'],
+        sessionId : msgBody['sessionId']
+    }
+    console.log(userCredentials,'userCredentials')
+
+    let userPosition = userDAO.findIndex(userCredentials)
+    console.log('user index', userPosition)
+
+    if(userCredentials['sessionId'] !== userDAO.checkSessionId(userPosition)){
+        console.log("session ids don't match")
+        res.status(403).send("Mismatch in session ids!")
+        return 
+    }
+
+    //creates the ad format
+    let newFavourite = {
+        ...msgBody
+    }
+    delete newFavourite['username']
+    delete newFavourite['password']
+    delete newFavourite['sessionId']
+
+    //check if ad already in favourites
+    console.log(newFavourite['id'], 'id of current ad')
+    let adPosition = userDAO.findFavourite(userPosition,newFavourite['id'])
+    console.log(adPosition,"Ad position!")
+    //if it is remove it else add it
+    if(adPosition != -1){
+        userDAO.removeFromFavourites(userPosition,adPosition)
+        console.log('Removed ad from favourites!')
+    }
+    else{
+        userDAO.addToFavourites(userPosition,newFavourite)
+        console.log('Added to favourites succesfully!')
+    }
+    //send response
+    res.status(200).send("AFS Succesful!")
 })
 
 
