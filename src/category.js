@@ -3,16 +3,24 @@ const serverUrl = 'http://localhost:5000'
 const loginForm = document.querySelector('#login-form')
 const loginUsername = document.querySelector('#username')
 const loginPassword = document.querySelector('#password')
+const notification = document.querySelector('#error-notification')
 let subCategoryData
 let templateData = []
 let user 
 // to add to favorites we check if user exists and if his
 //session id is defined
 
+function displayError(){
+    notification.classList.remove('login-success-message')
+    notification.classList.add('login-error-message')
+    notification.innerHTML = 'Wrong Credentials!'
+}
 
-
-
-
+function displaySuccess(){
+    notification.classList.remove('login-error-message')
+    notification.classList.add('login-success-message')
+    notification.innerHTML = 'Successful Login!'
+}
 
 function createTemplateData(){
     for(let scd of subCategoryData){
@@ -66,12 +74,13 @@ function submitLogin(){
             loginPassword.classList.add("login-error")
             loginUsername.value = ''
             loginPassword.value = ''
-            alert("The user doesn't exist")
+            displayError()
             return undefined
         }
         if(response.status == 200){
             loginUsername.classList.remove("login-error")
             loginPassword.classList.remove("login-error")
+            displaySuccess()
            return response.json()
         }
     })
@@ -95,7 +104,7 @@ function main(){
     const searchValues = window.location.search
     const params = new URLSearchParams(searchValues)
     const id = params.get('category_id')
-    const subURL = `${baseUrl}ads?subcategory=${id}`
+    const subURL = `${baseUrl}ads?category=${id}`
     //use the needed ones to fetch the category data +
     // its specific sub data
     fetch(subURL)
