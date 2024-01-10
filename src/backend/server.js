@@ -115,7 +115,45 @@ app.post('/favourites',(req,res)=>{
     res.status(200).send(JSON.stringify(favList))
 })
 
+app.get('/user/favourites', (req,res)=>{
+    console.log('FRS request retrieved')
 
+    let contentType = req.header('Content-Type')
+    if(contentType !== 'application/json'){
+        console.log('not json format')
+        res.status(400).send("Wrong format requested!")
+        return
+    }
+
+    // Extract user credentials from the request
+    let msgBody = req.body
+
+    let userCredentials = {
+        username : msgBody['username'],
+        password : msgBody['password'],
+        sessionId : msgBody['sessionId']
+    }
+    console.log(userCredentials,'userCredentials')
+
+    // Verify user credentials and get the user's position
+    let userPosition = userDAO.findIndex(userCredentials)
+    console.log('user index', userPosition)
+
+    if(userCredentials['sessionId'] !== userDAO.checkSessionId(userPosition)){
+        console.log("session ids don't match")
+        res.status(403).send("Mismatch in session ids!")
+        return 
+    }
+
+    if (userPosition !== -1) {
+        let favList = userDAO.returnFavouritesList(userPosition)
+        res.status(200).json(favList)
+    } else {
+        // If user credentials are invalid, respond with an error
+        res.status(200).send(JSON.stringify(favList))
+        return
+    }
+})
 
 app.listen(port,()=>{console.log(`Starting ${port}`)})
 
