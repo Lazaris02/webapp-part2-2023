@@ -19,18 +19,7 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <script id="ads-container-template" type="text/x-handlebars-template">
-        {{#each ads}}
-        <li class="ads-item" id="{{id}}">
-            <img  src="../resources/heart.png" class="favourites-heart" alt="heart-img">
-            <h2>{{title}}</h2>
-            <p>{{description}}</p>
-            <img src="https://wiki-ads.onrender.com/{{images}}"  class='ads-image' alt="ads-img">
-            <span>Τιμή:{{cost}}€</span>
-        </li>
-        {{/each}}
-    </script>
-    <script type="text/javascript" src="category.js" defer></script>
+    <script type="text/javascript" src="favorite-ads.js" defer></script>
 
 <body>
     <div id="grid_wrap">
@@ -40,50 +29,16 @@
                     <h1>Find</h1>
                     <img src="../resources/logo-no-background.png" alt="logo">
                 </div>
-                <nav id="nav_bar">
-                    <!-- Contains links to our other webpages -->
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-
-                        <li class="drop-down-1"><a href="categories.html">Categories</a>
-                            <ul class="sub-menu-1">
-                                <li class="drop-down-2"><a href="house_sales.html">House Sales</a>
-                                    <ul class="sub-menu-2">
-                                        <li><a href="house_sales_details.html" target="_blank">House Sale AH-001</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="car_sales.html">Car Sales</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-
-                <form id="login-form">
-                    <input type="text" maxlength="30" id="username" placeholder="username" required>
-                    <input type="text" minlength="8" maxlength="40" id="password" placeholder="password" required>
-                    <button type="submit">Login</button>
-                    <p id="error-notification"></p>
-                </form>
-
             </div>
             <div id="header_banner">
-                <h2>Our Categories!</h2>
+                <h2>Your Favorites!</h2>
                 <img srcset="../resources/head/categories_png.png 650w" sizes="(max-width:650px) 25vw,
                         (max-width:1300px) 20vw,250px" src="../resources/head/categories_png.png"
                     alt="about_us_background">
             </div>
         </header>
 
-    
-
-        <main id="main_content">
-            <div class="styling-container">
-                <a href="favorite-ads.html" id="favorites-link">View Favorites</a>
-            </div>
-            <ul class="ads-container"></ul>
-        </main>
-
+        <!-- Will contain a list of ads! -->
 
 
         <footer id="main_footer">

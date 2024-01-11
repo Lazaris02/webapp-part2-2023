@@ -116,6 +116,25 @@ app.post('/favourites',(req,res)=>{
 })
 
 
+app.get('/favorites-list',(req,res)=>{
+    //receive the favorites retrieval request
+    console.log(req.query.username,req.query.sessionId)
+    let username = req.query.username
+    let sessionId = req.query.sessionId
+    //check if user + sessionId combo exists
+    let userIndex = userDAO.findIndex(username)
+    let user = userDAO.find(userIndex)
+    if(user === undefined || user.sessionId != sessionId){
+        res.status(404).send('Invalid User')
+        return  
+    }
+    //if it does get his favorites list and send it back to the user 
+    let favoritesList = userDAO.returnFavouritesList(userIndex)
+    console.log(user,favoritesList)
+    res.status(200).send(JSON.stringify(favoritesList))
+
+})
+
 
 app.listen(port,()=>{console.log(`Starting ${port}`)})
 
