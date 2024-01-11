@@ -124,6 +124,7 @@ app.get('/favorites-list',(req,res)=>{
     //check if user + sessionId combo exists
     let userIndex = userDAO.findIndex(username)
     let user = userDAO.find(userIndex)
+    console.log(user,"the user!")
     if(user === undefined || user.sessionId != sessionId){
         res.status(404).send('Invalid User')
         return  

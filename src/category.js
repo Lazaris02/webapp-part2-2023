@@ -42,9 +42,8 @@ function initializeEventListeners(){
 }
 
 function createFavoritesURL(e){
-    //if(user === undefined || user.sessionId === undefined){e.preventDefault()}
-    //const favoritesURL = `favorite-ads.html?$username={user.username}&sessionId=${sessionId}`
-    const favoritesURL = `favorite-ads.html?username=makis&sessionId=123`
+    if(user === undefined || user.sessionId === undefined){e.preventDefault()}
+    const favoritesURL = `favorite-ads.html?username=${user["username"]}&sessionId=${user["sessionId"]}`
     favoritesLink.href = favoritesURL
     console.log(favoritesLink.href)
 }

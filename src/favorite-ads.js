@@ -48,8 +48,8 @@ function main(){
     // first I need the URLparams
     const searchValues = window.location.search
     const params = new URLSearchParams(searchValues)
-    const username = 'makis'//params.get('username')
-    const sessionId = '123'//params.get('sessionId')
+    const username = params.get('username')
+    const sessionId = params.get('sessionId')
 
     //create the URL the GET request will use
     const queryString = `?username=${username}&sessionId=${sessionId}`
