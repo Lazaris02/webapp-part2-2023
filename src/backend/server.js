@@ -25,7 +25,6 @@ app.post('/users',(req,res)=>{
     // or 404 NotFound
     console.log('Login Request Received!')
     let contentType = req.header('Content-Type')
-    console.log(contentType)
 
     if(contentType !== 'application/json'){
         console.log('not json format')
@@ -110,8 +109,6 @@ app.post('/favourites',(req,res)=>{
     }
     //send response
     let favList = userDAO.returnFavouritesList(userPosition)
-    console.log(favList,"FAVOURITE LIST")
-    console.log(userDAO.find(userPosition))
     res.status(200).send(JSON.stringify(favList))
 })
 
@@ -122,16 +119,15 @@ app.get('/favorites-list',(req,res)=>{
     let username = req.query.username
     let sessionId = req.query.sessionId
     //check if user + sessionId combo exists
-    let userIndex = userDAO.findIndex(username)
-    let user = userDAO.find(userIndex)
+    let user = userDAO.findUser(username)
     console.log(user,"the user!")
     if(user === undefined || user.sessionId != sessionId){
         res.status(404).send('Invalid User')
         return  
     }
     //if it does get his favorites list and send it back to the user 
-    let favoritesList = userDAO.returnFavouritesList(userIndex)
-    console.log(user,favoritesList)
+    console.log("User authenthicated sending favorites")
+    favoritesList = user["favourites"]
     res.status(200).send(JSON.stringify(favoritesList))
 
 })

@@ -40,7 +40,9 @@ function FRS(){
 
 }
 
-function setupFavoritesTemplate(){console.log('creating list template')}
+function setupFavoritesTemplate(){
+    //setups + compiles the Handlebars template
+}
 
 
 function main(){

@@ -15,6 +15,14 @@ class userDAO{
         return (index>= 0 && index <users.length) ? users[index] : undefined
     }
 
+    findUser(username){
+        //returns the user that has this username or undefined if not found
+        for(let user of users){
+            if(user.getUsername == username){return user}
+        }
+        return -1
+    }
+
     findIndex(search){
         //finds the index of a specified user
         //returns -1 if not found 
