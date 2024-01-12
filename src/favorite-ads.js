@@ -34,14 +34,22 @@ function FRS(){
         }
         //Now we need to put the Data in the handlebars template
         console.log(data)
-        setupFavoritesTemplate()
+        setupFavoritesTemplate(data)
     })
     .catch(err=>{console.log(err)})
 
 }
 
-function setupFavoritesTemplate(){
+function setupFavoritesTemplate(data){
     //setups + compiles the Handlebars template
+    let favoritesTemplateScript = document.querySelector('#favorites-container-template').textContent
+    let compiledFavoritesTemplate = Handlebars.compile(favoritesTemplateScript)
+    let templateObj = compiledFavoritesTemplate({
+        'ads' : data
+    })
+    let favoritesList = document.querySelector('.favorites-container')
+    favoritesList.innerHTML = templateObj
+    console.log("Template Loaded!")
 }
 
 

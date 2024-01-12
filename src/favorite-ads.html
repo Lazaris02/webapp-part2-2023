@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script id="favorites-container-template" type="text/x-handlebars-template">
+        {{#each ads}}
+        <li class="ads-item" id="{{id}}">
+            <h2>{{title}}</h2>
+            <p>{{description}}</p>
+            <img src="https://wiki-ads.onrender.com/{{images}}"  class='ads-image' alt="ads-img">
+            <span>Τιμή:{{cost}}€</span>
+        </li>
+        {{/each}}
+    </script>
     <script type="text/javascript" src="favorite-ads.js" defer></script>
 
 <body>
@@ -38,7 +48,9 @@
             </div>
         </header>
 
-        <!-- Will contain a list of ads! -->
+        <main id="main_content">
+            <ul class="favorites-container"></ul>
+        </main>
 
 
         <footer id="main_footer">

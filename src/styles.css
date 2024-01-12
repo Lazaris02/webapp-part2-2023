@@ -124,7 +124,7 @@ img{
 
 /* for category.html */
 
-.ads-container, .full-ad-container{
+.ads-container, .full-ad-container, .favorites-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
