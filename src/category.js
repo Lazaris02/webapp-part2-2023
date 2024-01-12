@@ -5,6 +5,7 @@ const loginUsername = document.querySelector('#username')
 const loginPassword = document.querySelector('#password')
 const notification = document.querySelector('#error-notification')
 const favouritesHeart = document.querySelectorAll('.favourites-heart')
+const favoritesLink = document.querySelector('#favorites-link')
 
 let CategoryData
 let templateData = []
@@ -37,7 +38,14 @@ function initializeEventListeners(){
         }
     })
 
+    favoritesLink.addEventListener('click',(e)=>{createFavoritesURL(e)})
+}
 
+function createFavoritesURL(e){
+    if(user === undefined || user.sessionId === undefined){e.preventDefault()}
+    const favoritesURL = `favorite-ads.html?username=${user["username"]}&sessionId=${user["sessionId"]}`
+    favoritesLink.href = favoritesURL
+    console.log(favoritesLink.href)
 }
 
 function clearCurrentFavourites(){
@@ -149,8 +157,6 @@ function LS(){
     .then(data=>{
         user = data
         console.log(user)
-        //also if the server was already open 
-        //fetches the favorites of the user ??
     })
     .catch(err=>console.log(err))
 

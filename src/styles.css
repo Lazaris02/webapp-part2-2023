@@ -124,7 +124,7 @@ img{
 
 /* for category.html */
 
-.ads-container, .full-ad-container{
+.ads-container, .full-ad-container, .favorites-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -227,6 +227,24 @@ img{
     font-size: larger;
 }
 
+
+.styling-container{
+    display: block;
+    text-align: center;
+}
+
+#favorites-link{
+    color: var(--header-text);
+    font-weight: 700;
+    font-size: larger;
+    text-decoration: none;
+    margin-left: auto;
+}
+
+#favorites-link:hover{
+    color:white;
+    transition: all 200ms;
+}
 
 /*for project-2 end here*/
 
